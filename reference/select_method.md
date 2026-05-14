@@ -32,12 +32,14 @@ Dongqiang Zeng
 ## Examples
 
 ``` r
+# \donttest{
 eset_stad <- load_data("eset_stad")
 #> ℹ Loading cached data: "eset_stad"
 anno_grch38 <- load_data("anno_grch38")
 #> ℹ Loading cached data: "anno_grch38"
 hallmark <- load_data("hallmark")
-#> ℹ Loading cached data: "hallmark"
+#> ℹ Trying mirror 1/4: <https://github.com>
+#> ✔ Download complete: "hallmark"
 eset <- anno_eset(eset = eset_stad, annotation = anno_grch38, probe = "id")
 #> ℹ Row number of original eset: 60483
 #> ✔ 100% of probes in expression set were annotated
@@ -54,11 +56,9 @@ res <- calculate_sig_score(
 #> ℹ Step 1/3: PCA method
 #> ℹ Step 2/3: z-score method
 #> ℹ Step 3/3: ssGSEA method
-#> ℹ GSVA version 2.4.9
+#> ℹ GSVA version 2.6.1
 #> ℹ Searching for rows with constant values
 #> ℹ Calculating ssGSEA scores for 4 gene sets
-#> ℹ Calculating ranks
-#> ℹ Calculating rank weights
 #> ℹ Normalizing ssGSEA scores
 #> ✔ Calculations finished
 select_method(res, method = "PCA")
@@ -77,4 +77,5 @@ select_method(res, method = "PCA")
 #> 10 TCGA-FP-7916    10                -0.501                       7.27  
 #> # ℹ 2 more variables: HALLMARK_ANDROGEN_RESPONSE <dbl>,
 #> #   HALLMARK_ANGIOGENESIS <dbl>
+# }
 ```

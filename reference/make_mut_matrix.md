@@ -84,6 +84,7 @@ Shixiang Huang
 ``` r
 if (FALSE) { # \dontrun{
 # See maftools or TCGAbiolinks documentation for obtaining MAF input
-mut_list <- make_mut_matrix(maf = maf, isTCGA = TRUE, category = "multi")
+# Example: Download MAF file from TCGA portal
+mut_list <- make_mut_matrix(maf = "path_to_maf_file.maf", isTCGA = TRUE, category = "multi")
 } # }
 ```

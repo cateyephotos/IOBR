@@ -65,8 +65,8 @@ sig_pheatmap(
 
 - path:
 
-  Character string or \`NULL\`. Directory to save output files. Default
-  creates \`"Marker-heatmap-average"\`.
+  Character string or \`NULL\`. Directory to save output files. If
+  \`NULL\`, the heatmap is not saved. Default is \`NULL\`.
 
 - cols1:
 
@@ -183,9 +183,5 @@ sig_pheatmap(
 #> ℹ Heatmap palettes: 1 (pheatmap), 2 (peach), 3 (blues), 4 (virids), 5 (reds), 6 (RdBu), 7 (navy_firebrick), 8 (magma)
 #> ℹ Random palettes: 1 (palette1), 2 (palette2), 3 (palette3), 4 (palette4)
 #> ℹ Using random seed: 54321
-#> $subtype
-#>         EBV          GS         CIN         MSI 
-#> "#8F7700FF"   "#386CB0" "#008B45FF"   "#e31a1c" 
-#> 
-#> ✔ Heatmap saved to: /tmp/RtmpOGec62/1-pheatmap-subtype.pdf
+#> ✔ Heatmap saved to: /tmp/RtmpztGb1U/1-pheatmap-subtype.pdf
 ```

@@ -72,7 +72,8 @@ markers), \`top_markers\` (top markers per group).
 
 ``` r
 eset_tme_stad <- load_data("eset_tme_stad")
-#> ℹ Loading cached data: "eset_tme_stad"
+#> ℹ Trying mirror 1/4: <https://github.com>
+#> ✔ Download complete: "eset_tme_stad"
 colnames(eset_tme_stad) <- substring(colnames(eset_tme_stad), 1, 12)
 pdata_sig_tme <- load_data("pdata_sig_tme")
 #> ℹ Trying mirror 1/4: <https://github.com>

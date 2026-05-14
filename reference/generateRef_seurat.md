@@ -94,8 +94,8 @@ Dongqiang Zeng
 ``` r
 if (FALSE) { # \dontrun{
 if (requireNamespace("Seurat", quietly = TRUE)) {
-  pbmc <- SeuratObject::pbmc_small
-  sm <- generateRef_seurat(sce = pbmc, celltype = "groups", slot_out = "data")
+  # Requires a Seurat object with sufficient cells and markers
+  sm <- generateRef_seurat(sce = seurat_obj, celltype = "cell_type", slot_out = "data")
 }
 } # }
 ```

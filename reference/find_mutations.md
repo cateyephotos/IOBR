@@ -71,7 +71,7 @@ find_mutations(
 
 - save_path:
 
-  Directory to save plots and results. If NULL, uses signature name.
+  Directory to save plots and results. If NULL, no files are saved.
 
 - palette:
 
@@ -137,7 +137,8 @@ Dongqiang Zeng
 
 ``` r
 if (FALSE) { # \dontrun{
-# This example requires a MAF file
+# This example requires a MAF file from TCGA or maftools
+# See maftools or TCGAbiolinks documentation for obtaining MAF files
 mut_list <- make_mut_matrix(
   maf = "path_to_maf_file", isTCGA = TRUE,
   category = "multi"

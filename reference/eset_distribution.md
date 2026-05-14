@@ -29,18 +29,20 @@ eset_distribution(eset, quantile = 3, log = TRUE, project = NULL)
 
 - project:
 
-  Optional project name for output files. Default is \`NULL\` (uses
-  "ESET").
+  Optional output directory path for saving files. If \`NULL\`, no files
+  are saved. Default is \`NULL\`.
 
 ## Value
 
-Invisibly returns \`NULL\`. Side effect: saves PNG files to disk.
+Invisibly returns \`NULL\`. If \`project\` is provided, saves PNG files
+to disk.
 
 ## Examples
 
 ``` r
 eset_stad <- load_data("eset_stad")
-#> ℹ Loading cached data: "eset_stad"
+#> ℹ Trying mirror 1/4: <https://github.com>
+#> ✔ Download complete: "eset_stad"
 anno_rnaseq <- load_data("anno_rnaseq")
 #> ℹ Trying mirror 1/4: <https://github.com>
 #> ✔ Download complete: "anno_rnaseq"
@@ -49,6 +51,8 @@ eset <- anno_eset(eset = eset_stad, annotation = anno_rnaseq)
 #> ✔ 100% of probes in expression set were annotated
 #> ℹ Found 2098 duplicate symbols, using "mean" method
 #> ℹ Row number after filtering duplicated gene symbol: 50139
+eset_distribution(eset)
+#> ✔ Applied log2 transformation
 eset_distribution(eset, project = file.path(tempdir(), "ESET"))
 #> ✔ Applied log2 transformation
 ```
