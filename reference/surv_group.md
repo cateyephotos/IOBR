@@ -121,24 +121,32 @@ Dongqiang Zeng
 ## Examples
 
 ``` r
-tcga_stad_pdata <- load_data("tcga_stad_pdata")
-# \donttest{
-surv_group(
-  input_pdata = tcga_stad_pdata,
+# Simulate data
+set.seed(123)
+sim_pdata <- data.frame(
+  ID = paste0("Sample", 1:100),
+  Lauren = sample(c("Intestinal", "Diffuse"), 100, replace = TRUE),
+  time = runif(100, 1, 60),
+  OS_status = sample(0:1, 100, replace = TRUE)
+)
+# Run survival analysis (survival and survminer are imported packages)
+result <- surv_group(
+  input_pdata = sim_pdata,
   target_group = "Lauren",
   time = "time",
-  status = "OS_status"
+  status = "OS_status",
+  save_path = NULL
 )
-#> ℹ Follow-up time ranges from 0.1 to 124 months
-#>    Diffuse Intestinal      Mixed 
-#>         59        160        117 
-#> ℹ Maximum follow-up time is 124 months; divided into 6 sections
-#> Registered S3 methods overwritten by 'ggpp':
-#>   method                  from   
-#>   heightDetails.titleGrob ggplot2
-#>   widthDetails.titleGrob  ggplot2
+#> ℹ Follow-up time ranges from 1.62 to 59.15 months
+#>    Diffuse Intestinal 
+#>         43         57 
+#> ℹ Maximum follow-up time is 59.2 months; divided into 6 sections
+#> ℹ Reference group not defined, using alphabetical order
 #> Ignoring unknown labels:
 #> • colour : "Strata"
+if (!is.null(result)) print(result)
 
-# }
+#> [[1]]
+#> NULL
+#> 
 ```

@@ -152,9 +152,16 @@ Dongqiang Zeng
 ## Examples
 
 ``` r
-tcga_stad_pdata <- load_data("tcga_stad_pdata")
+# Simulate data
+set.seed(123)
+sim_pdata <- data.frame(
+  ID = paste0("Sample", 1:50),
+  subtype = sample(c("TypeA", "TypeB", "TypeC"), 50, replace = TRUE),
+  TMEscore_plus = rnorm(50),
+  GZMB = rnorm(50)
+)
 sig_box_batch(
-  input = tcga_stad_pdata,
+  input = sim_pdata,
   vars = c("TMEscore_plus", "GZMB"),
   groups = "subtype",
   jitter = TRUE,
@@ -162,6 +169,9 @@ sig_box_batch(
   path = tempdir()
 )
 #> ℹ Processing feature: "TMEscore_plus"
+#> `stat_compare_means()` with `comparisons` displays *unadjusted* p-values (no correction for multiple comparisons).
+#> ℹ For p-values adjusted for multiple comparisons, use `geom_pwc()`, or `stat_pvalue_manual()` together with `compare_means(..., p.adjust.method = )`.
+#> This message is displayed once per session.
 #> ℹ Processing feature: "GZMB"
-#> ✔ Batch processing complete. Plots saved to: /tmp/RtmpztGb1U
+#> ✔ Batch processing complete. Plots saved to: /tmp/RtmpyE7mPi
 ```

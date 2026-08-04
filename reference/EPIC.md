@@ -153,66 +153,25 @@ duplicates before calling *EPIC*.
 ## Examples
 
 ``` r
-# \donttest{
-melanoma_data <- load_data("melanoma_data")
-#> ℹ Trying mirror 1/4: <https://github.com>
-#> ✔ Download complete: "melanoma_data"
-TRef <- load_data("TRef")
-#> ℹ Trying mirror 1/4: <https://github.com>
-#> ✔ Download complete: "TRef"
-res1 <- EPIC(melanoma_data$counts)
-#> ℹ Loading cached data: "TRef"
-#> ℹ Trying mirror 1/4: <https://github.com>
+melanoma_counts <- matrix(abs(rnorm(80)), nrow = 20, ncol = 4)
+rownames(melanoma_counts) <- paste0("Gene", 1:20)
+colnames(melanoma_counts) <- paste0("Sample", 1:4)
+mock_ref <- list(
+  refProfiles = matrix(abs(rnorm(80)), nrow = 20, ncol = 4),
+  sigGenes = paste0("Gene", 1:10)
+)
+rownames(mock_ref$refProfiles) <- paste0("Gene", 1:20)
+colnames(mock_ref$refProfiles) <- c("Bcells", "CD4T", "CD8T", "NK")
+res1 <- EPIC(melanoma_counts, reference = mock_ref)
+#> Warning: 'refProfiles.var' not defined; using identical weights for all genes
+#> Warning: there are few genes in common between the bulk samples and reference cells:20, so the data scaling might be an issue
+#> ℹ Trying mirror 1/12: <https://github.com>
 #> ✔ Download complete: "mRNA_cell_default"
-#> Warning: The optimization didn't fully converge for some samples:
-#> LAU1255; LAU355
-#>  - check fit.gof for the convergeCode and convergeMessage
-#> Warning: mRNA_cell value unknown for some cell types: CAFs, Endothelial - using the default value of 0.4 for these but this might bias the true cell proportions from all cell types.
-res1$cellFractions
-#>             Bcells         CAFs CD4_Tcells  CD8_Tcells  Endothelial Macrophages
-#> LAU125  0.01016774 2.359222e-04 0.03041567 0.009302975 2.554933e-02  0.01193535
-#> LAU1255 0.04136029 5.590262e-04 0.05849291 0.129023216 4.649865e-07  0.01961274
-#> LAU1314 0.67562140 1.163239e-08 0.08198931 0.015668658 2.799781e-07  0.00144306
-#> LAU355  0.45493081 7.457349e-09 0.26813661 0.016429308 4.095153e-09  0.00861752
-#>              NKcells otherCells
-#> LAU125  9.058697e-09  0.9123930
-#> LAU1255 4.706589e-07  0.7509509
-#> LAU1314 4.095899e-03  0.2211814
-#> LAU355  4.601164e-08  0.2518857
-res2 <- EPIC(melanoma_data$counts, TRef)
-#> ℹ Loading cached data: "mRNA_cell_default"
-#> Warning: The optimization didn't fully converge for some samples:
-#> LAU1255; LAU355
-#>  - check fit.gof for the convergeCode and convergeMessage
-#> Warning: mRNA_cell value unknown for some cell types: CAFs, Endothelial - using the default value of 0.4 for these but this might bias the true cell proportions from all cell types.
-res3 <- EPIC(bulk = melanoma_data$counts, reference = TRef)
-#> ℹ Loading cached data: "mRNA_cell_default"
-#> Warning: The optimization didn't fully converge for some samples:
-#> LAU1255; LAU355
-#>  - check fit.gof for the convergeCode and convergeMessage
-#> Warning: mRNA_cell value unknown for some cell types: CAFs, Endothelial - using the default value of 0.4 for these but this might bias the true cell proportions from all cell types.
-res4 <- EPIC(melanoma_data$counts, reference = "TRef")
-#> ℹ Loading cached data: "TRef"
-#> ℹ Loading cached data: "mRNA_cell_default"
-#> Warning: The optimization didn't fully converge for some samples:
-#> LAU1255; LAU355
-#>  - check fit.gof for the convergeCode and convergeMessage
-#> Warning: mRNA_cell value unknown for some cell types: CAFs, Endothelial - using the default value of 0.4 for these but this might bias the true cell proportions from all cell types.
-res5 <- EPIC(melanoma_data$counts, mRNA_cell_sub = c(
-  Bcells = 1,
-  otherCells = 5
-))
-#> ℹ Loading cached data: "TRef"
-#> ℹ Loading cached data: "mRNA_cell_default"
-#> Warning: The optimization didn't fully converge for some samples:
-#> LAU1255; LAU355
-#>  - check fit.gof for the convergeCode and convergeMessage
-#> Warning: mRNA_cell value unknown for some cell types: CAFs, Endothelial - using the default value of 0.4 for these but this might bias the true cell proportions from all cell types.
-# Various possible ways of calling EPIC function. res 1 to 4 should
-# give exactly the same outputs, and the elements res1$cellFractions
-# should be equal to the example predictions found in
-# melanoma_data$cellFractions.pred for these first 4 results.
-# The values of cellFraction for res5 will be different due to the use of
-# other mRNA per cell values for the B and other cells.
-# }
+#> Warning: mRNA_cell value unknown for some cell types: CD4T, CD8T, NK - using the default value of 0.4 for these but this might bias the true cell proportions from all cell types.
+if (!is.null(res1)) head(res1$cellFractions)
+#>            Bcells         CD4T         CD8T           NK   otherCells
+#> Sample1 0.4230775 3.006759e-02 4.844949e-01 1.684242e-08 6.236003e-02
+#> Sample2 0.2068297 2.951330e-04 1.739604e-01 6.189147e-01 2.347104e-09
+#> Sample3 0.4371192 4.646099e-09 5.628792e-01 8.043256e-08 1.460648e-06
+#> Sample4 0.3613680 6.895614e-09 4.523433e-08 5.324749e-01 1.061570e-01
 ```

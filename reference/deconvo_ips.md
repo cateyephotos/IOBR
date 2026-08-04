@@ -33,19 +33,15 @@ Dongqiang Zeng
 ## Examples
 
 ``` r
-eset_stad <- load_data("eset_stad")
-#> ℹ Loading cached data: "eset_stad"
-anno_grch38 <- load_data("anno_grch38")
-#> ℹ Loading cached data: "anno_grch38"
-eset <- anno_eset(eset = eset_stad, annotation = anno_grch38, probe = "id")
-#> ℹ Row number of original eset: 60483
-#> ✔ 100% of probes in expression set were annotated
-#> ℹ Found 2293 duplicate symbols, using "mean" method
-#> ℹ Row number after filtering duplicated gene symbol: 50181
-# \donttest{
-ips_result <- deconvo_ips(eset = eset, project = "TCGA-STAD")
-#> ℹ Running IPS calculation
-#> ℹ Trying mirror 1/4: <https://github.com>
-#> ✔ Download complete: "ips_gene_set"
-# }
+if (FALSE) { # \dontrun{
+ips_genes <- load_data("ips_gene_set")
+if (!is.null(ips_genes)) {
+  set.seed(123)
+  sim_eset <- matrix(rnorm(nrow(ips_genes) * 2), nrow(ips_genes), 2)
+  rownames(sim_eset) <- ips_genes$GENE
+  colnames(sim_eset) <- paste0("Sample", 1:2)
+  result <- deconvo_ips(eset = sim_eset, project = "Example")
+  if (!is.null(result)) head(result)
+}
+} # }
 ```

@@ -33,14 +33,10 @@ exact type depends on the requested dataset.
 ## Examples
 
 ``` r
-# Load signature collection
+# Load signature collection (stored in sysdata, no download)
 sig_tme <- load_data("signature_tme")
 
-# Load expression data
-eset <- load_data("eset_stad")
-#> ℹ Loading cached data: "eset_stad"
-
-# Load color palette
+# Load color palette (stored in sysdata, no download)
 colors <- load_data("palette1")
 
 # Error handling with suggestions for similar names
@@ -61,4 +57,9 @@ try(load_data("sign_tme")) # Will suggest "signature_tme"
 #>   signature_collection, signature_collection_citation, signature_metabolism,
 #>   signature_sc, signature_tme, signature_tumor, stad_group, subgroup_data,
 #>   tcga_stad_pdata, tcga_stad_sig, tcga_stad_var, xCell.data
+
+if (FALSE) { # \dontrun{
+# Load expression data (triggers download from GitHub)
+eset <- load_data("eset_stad")
+} # }
 ```

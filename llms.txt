@@ -181,8 +181,9 @@ library(IOBR)
 
 ## 💾 Data Cache Management
 
-IOBR downloads large datasets from GitHub releases and caches them
-locally. You can customize the cache location:
+IOBR downloads large datasets from [GitHub
+releases](https://github.com/IOBR/IOBR/releases/tag/data-v1.0/) and
+caches them locally. You can customize the cache location:
 
 ``` r
 
@@ -209,6 +210,10 @@ To permanently set a custom cache directory, add this to your
 
 options(IOBR.cache_dir = "/path/to/your/cache")
 ```
+
+> When R fails to download, you can manually download the data from
+> GitHub or GitHub acceleration sites, and then configure the cache
+> directory.
 
 ## 🚀 Quick Start
 
@@ -392,10 +397,10 @@ sig_group[1:3]
 | [CIBERSORT](https://cibersortx.stanford.edu/) | Free for non-commercial use only | Newman, A. M., et al. (2015). Nature Methods, 12(5), 453–457. <https://doi.org/10.1038/nmeth.3337> |
 | [ESTIMATE](https://bioinformatics.mdanderson.org/public-software/estimate/) | Free ([GPL2.0](https://bioinformatics.mdanderson.org/estimate/)) | Vegesna R, et al. (2013). Nature Communications, 4, 2612. <https://doi.org/10.1038/ncomms3612> |
 | [quanTIseq](https://icbi.i-med.ac.at/software/quantiseq/doc/index.html) | Free ([GPL2.0](https://github.com/omnideconv/immunedeconv/blob/master/LICENSE)) | Finotello, F., et al. (2019). Genome Medicine, 11(1), 34. <https://doi.org/10.1186/s13073-019-0638-6> |
-| [TIMER](http://cistrome.org/TIMER/) | Free ([GPL 2.0](http://cistrome.org/TIMER/download.md)) | Li, B., et al. (2016). Genome Biology, 17(1), 174. <https://doi.org/10.1186/s13059-016-1028-7> |
+| [TIMER](https://github.com/hanfeisun/TIMER) | Free ([GPL 2.0](https://github.com/hanfeisun/TIMER)) | Li, B., et al. (2016). Genome Biology, 17(1), 174. <https://doi.org/10.1186/s13059-016-1028-7> |
 | [IPS](https://github.com/icbi-lab/Immunophenogram) | Free ([BSD](https://github.com/icbi-lab/Immunophenogram/blob/master/LICENSE)) | Charoentong P, et al. (2017). Cell Reports, 18, 248-262. <https://doi.org/10.1016/j.celrep.2016.12.019> |
 | [MCPCounter](https://github.com/ebecht/MCPcounter) | Free ([GPL 3.0](https://github.com/ebecht/MCPcounter/blob/master/Source/License)) | Becht, E., et al. (2016). Genome Biology, 17(1), 218. <https://doi.org/10.1186/s13059-016-1070-5> |
-| [xCell](https://xcell.ucsf.edu/) | Free ([GPL 3.0](https://github.com/dviraran/xCell/blob/master/DESCRIPTION)) | Aran, D., et al. (2017). Genome Biology, 18(1), 220. <https://doi.org/10.1186/s13059-017-1349-1> |
+| [xCell](https://github.com/dviraran/xCell) | Free ([GPL 3.0](https://github.com/dviraran/xCell/blob/master/DESCRIPTION)) | Aran, D., et al. (2017). Genome Biology, 18(1), 220. <https://doi.org/10.1186/s13059-017-1349-1> |
 | [EPIC](https://github.com/GfellerLab/EPIC) | Free for non-commercial use only ([Academic License](https://github.com/GfellerLab/EPIC/blob/master/LICENSE)) | Racle, J., et al. (2017). eLife, 6, e26476. <https://doi.org/10.7554/eLife.26476> |
 
 ### Signature Estimation Methods

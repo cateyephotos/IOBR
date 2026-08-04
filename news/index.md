@@ -2,6 +2,56 @@
 
 ## IOBR (development version)
 
+## IOBR 2.2.3
+
+CRAN release: 2026-05-30
+
+### Improvements
+
+- **CRAN Compliance**: Fixed policy violations regarding home directory
+  usage and internet access during checks.
+  - Default cache directory changed from
+    [`tools::R_user_dir()`](https://rdrr.io/r/tools/userdir.html) to a
+    session-specific temporary directory.
+  - Added internet connectivity check for both Google and Baidu (for
+    Chinese users).
+  - Fixed example handling: replaced `if(interactive())` with proper
+    `\dontrun{}` blocks for genuinely non-runable examples
+    (network-dependent, user files required, Suggested packages). CRAN
+    clarified that `if(interactive())` does NOT skip examples in checks.
+  - Minimized `\dontrun{}` usage to 22 blocks with documented reasons;
+    functions that can run offline use simulated data.
+  - Users can still opt-in to persistent caching via
+    [`set_iobr_cache_dir()`](https://iobr.github.io/IOBR/reference/set_iobr_cache_dir.md)
+    or `options(IOBR.cache_dir = ...)`.
+
+### Bug Fixes
+
+- Fixed
+  [`count2tpm()`](https://iobr.github.io/IOBR/reference/count2tpm.md) to
+  return `NULL` gracefully when annotation data is unavailable offline.
+
+## IOBR 2.2.2
+
+CRAN release: 2026-05-25
+
+### Improvements
+
+- Supported non-GitHub mirrors and added fallback.
+
+### Bug Fixes
+
+- Fixed GitHub Actions CI failure on `r-devel` by correcting the
+  `http-user-agent` configuration and removing redundant dependency
+  specifications.
+- Added `BiocManager` to `Suggests` in `DESCRIPTION` to improve
+  Bioconductor package resolution and address dependency availability
+  issues reported in CRAN checks.
+
+## IOBR 2.2.1
+
+CRAN release: 2026-05-15
+
 ### New Features
 
 - **Custom Cache Directory**: Added support for customizing the download

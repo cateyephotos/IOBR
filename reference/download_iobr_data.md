@@ -48,25 +48,7 @@ The requested dataset.
 ## Examples
 
 ``` r
-# \donttest{
-# Download TCGA STAD signature data
+if (FALSE) { # \dontrun{
 tcga_sig <- download_iobr_data("tcga_stad_sig")
-#> ℹ Trying mirror 1/4: <https://github.com>
-#> ✔ Download complete: "tcga_stad_sig"
-
-# Download with custom mirrors
-eset <- download_iobr_data("eset_stad",
-  mirrors = c(
-    "https://ghproxy.vip/https://github.com",
-    "https://gh-proxy.org/https://github.com"
-  )
-)
-#> ℹ Loading cached data: "eset_stad"
-
-# Use custom cache directory (use tempdir() for examples)
-options(IOBR.cache_dir = tempdir())
-data <- download_iobr_data("lm22")
-#> ℹ Trying mirror 1/4: <https://github.com>
-#> ✔ Download complete: "lm22"
-# }
+} # }
 ```

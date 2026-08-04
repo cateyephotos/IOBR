@@ -40,19 +40,13 @@ to disk.
 ## Examples
 
 ``` r
-eset_stad <- load_data("eset_stad")
-#> ℹ Trying mirror 1/4: <https://github.com>
-#> ✔ Download complete: "eset_stad"
-anno_rnaseq <- load_data("anno_rnaseq")
-#> ℹ Trying mirror 1/4: <https://github.com>
-#> ✔ Download complete: "anno_rnaseq"
-eset <- anno_eset(eset = eset_stad, annotation = anno_rnaseq)
-#> ℹ Row number of original eset: 60483
-#> ✔ 100% of probes in expression set were annotated
-#> ℹ Found 2098 duplicate symbols, using "mean" method
-#> ℹ Row number after filtering duplicated gene symbol: 50139
-eset_distribution(eset)
-#> ✔ Applied log2 transformation
-eset_distribution(eset, project = file.path(tempdir(), "ESET"))
-#> ✔ Applied log2 transformation
+# Simulate data
+set.seed(123)
+sim_eset <- matrix(rnorm(1000 * 10, mean = 5, sd = 2), 1000, 10)
+rownames(sim_eset) <- paste0("Gene", 1:1000)
+colnames(sim_eset) <- paste0("Sample", 1:10)
+
+# Run distribution plot
+result <- eset_distribution(sim_eset)
+#> ℹ Log2 transformation not necessary (data appears to already be log-scaled)
 ```
